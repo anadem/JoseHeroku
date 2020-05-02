@@ -31,9 +31,9 @@ api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
 
-db.init_app(app)
 if __name__ == '__main__':
     from db import db   # i moved this from higher up as in vid 128 at 5m50s
                         # also moved to run.app vid 126
+    db.init_app(app)
                                     # don't app.run unless app.py is NOT imported, i.e. is main
     app.run(port=5000, debug=True)  # debug=True shows a page with error details
