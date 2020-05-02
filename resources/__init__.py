@@ -1,0 +1,1 @@
+# __init__.py files for Python to treat the resources directory as containing packages

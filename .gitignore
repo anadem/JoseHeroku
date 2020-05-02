@@ -1,0 +1,7 @@
+# comments MUST start in first column
+# this is C:\Users\alansi\MyPy\Flask\section7\code\.gitignore
+# made for new github repo for heroku from that dir
+__pycache__/
+*.db
+*.pyc
+npspace.npw
