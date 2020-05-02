@@ -11,17 +11,16 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
-from db import db
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' # or mysql, postgres sql, oracle, ...
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
 
-@app.before_first_request       # gets run before any request is run
-def create_tables():
-    db.create_all()             # create tables iff they don't exist
+# decorator also moved to run.py in vid 128 6m25s
+# @app.before_first_request       # gets run before any request is run
+# def create_tables():
+#     db.create_all()             # create tables iff they don't exist
 
 jwt = JWT(app, authenticate, identity)
 
@@ -34,5 +33,7 @@ api.add_resource(UserRegister, '/register')
 
 db.init_app(app)
 if __name__ == '__main__':
+    from db import db   # i moved this from higher up as in vid 128 at 5m50s
+                        # also moved to run.app vid 126
                                     # don't app.run unless app.py is NOT imported, i.e. is main
     app.run(port=5000, debug=True)  # debug=True shows a page with error details
